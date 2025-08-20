@@ -9,12 +9,19 @@ class Lexon:
 
     def _register_core_commands(self):
         self.commands.append((re.compile(r'^say "(.*)"$'), self._cmd_say))
-        self.commands.append((re.compile(r'^remember (\w+) is "(.*)"$'), self._cmd_remember))
+        self.commands.append((re.compile(r'^store (\w+) into "(.*)"$'), self._cmd_remember))
         self.commands.append((re.compile(r'^recall (\w+)$'), self._cmd_recall))
         self.commands.append((re.compile(r'^ask "(.*)" as (\w+)$'), self._cmd_ask))
-
+        self.commands.append((re.compile(r'^incredible gassy$'), self._cmd_incrediblegassy)) # Easter Egg
+        self.commands.append((re.compile(r'^add "(.*)" into this project$'), self._cmd_import))
     def _cmd_say(self, match):
         print(match.group(1))
+    
+    def _cmd_incrediblegassy(self, match):
+        print("This program needs a hero!")
+    
+    def _cmd_import(self, match):
+        print("Importing WIP! Tried to import: " + match.group(1))
 
     def _cmd_remember(self, match):
         var, value = match.groups()
